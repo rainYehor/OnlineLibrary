@@ -1,0 +1,44 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>{{ bookselection }}</h1>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input
+        type="text"
+        name="bookname"
+        placeholder="Ім'я книги"
+        maxlength="255"
+        required
+      />
+      <input type="submit" value="Шукати за іменем книги" />
+    </form>
+    <br />
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input
+        type="text"
+        name="authorname"
+        placeholder="Ім'я автора"
+        maxlength="255"
+        required
+      />
+      <input type="submit" value="Шукати за іменем автора" />
+    </form>
+    <br />
+    <hr>
+    {% for book in books %}
+        <h3>{{ book.title }}</h3>
+        <h4>{{ book.author.name }}</h4>
+        <p>{{ book.description }}</p>
+        <img src="{{ book.image.url }}" alt="">
+        <hr>
+    {% endfor %}
+
+  </body>
+</html>
